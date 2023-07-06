@@ -14,9 +14,12 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     dplyr,
+    fs,
+    glue,
     magrittr,
     purrr,
     readr,
     stringr,
-    tibble
+    tibble,
+    withr
 RoxygenNote: 7.2.3

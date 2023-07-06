@@ -22,9 +22,16 @@ read_score_file <- function(csv_filepath,
   (
     csv_filepath
     %>% readr::read_csv2()
+    %>% pick_and_order_proper_columns()
+    %>% nettoie_nom_colonnes()
+  )
+}
+
+pick_and_order_proper_columns <- function(df) {
+  (
+    df
     %>% remove_1st_and_last_column()
     %>% invert_first_and_second_column()
-    %>% nettoie_nom_colonnes()
   )
 }
 
