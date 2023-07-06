@@ -4,5 +4,3 @@ read_score_file <- function(csv_filepath,
   readr::read_csv2(csv_filepath)
 }
 
-
-
