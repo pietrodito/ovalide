@@ -95,5 +95,3 @@ save_all_tibbles_to_rds <- function(dfs, champ, statut) {
 
   invisible()
 }
-
-
