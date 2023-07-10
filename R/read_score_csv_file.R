@@ -1,15 +1,15 @@
-#' Read a csv score file
+#' Read a csv score file and affect to the_environment
 #'
 #' @param csv_filepath the path of the csv file
 #' @param champ name of the PMSI champ
 #' @param statut private or public status
 #'
-#' @return a tibble with proper columns
+#' @return
 #' @export
 #'
 #' @examples
 #' read_score_file("score.csv", "psy", "dgf")
-read_score_file <- function(csv_filepath,
+read_score_csv_file <- function(csv_filepath,
                             champ = c("mco", "had", "ssr", "psy"),
                             statut = c("dgf", "oqn")) {
 
@@ -24,6 +24,7 @@ read_score_file <- function(csv_filepath,
     %>% readr::read_csv2()
     %>% pick_and_order_proper_columns()
     %>% nettoie_nom_colonnes()
+    %>% readr::write_csv(glue::glue("data/{champ}_{statut}/score.csv"))
   )
 }
 

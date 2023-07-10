@@ -2,6 +2,10 @@
 
 export("%>%")
 export(extract_column_codes_from_score_file)
-export(read_score_file)
+export(format_volume_table)
+export(read_ovalide_tables)
+export(read_score)
+export(read_score_csv_file)
 export(read_zip_table_file)
+export(the)
 importFrom(magrittr,"%>%")

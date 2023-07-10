@@ -7,7 +7,7 @@ test_that("unzip and save had dgf ", {
   withr::defer(fs::dir_delete("data"))
 
   rds_result_path <- "data/had_dgf/ovalide.rds"
-  expected_file_size <- 2463842L
+  expected_file_size <- 2468142L
   actual_size <- fs::file_size(rds_result_path) %>% as.integer()
   expect_equal(actual_size, expected_file_size)
 })
@@ -22,7 +22,8 @@ test_that("unzip and save psy oqn ", {
   withr::defer(fs::dir_delete("data"))
 
   rds_result_path <- "data/psy_oqn/ovalide.rds"
-  expected_file_size <- 3150315L
+  expected_file_size <- 3150629L
   actual_size <- fs::file_size(rds_result_path) %>% as.integer()
   expect_equal(actual_size, expected_file_size)
 })
+

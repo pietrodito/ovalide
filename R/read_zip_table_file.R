@@ -63,9 +63,7 @@ rename_csv_files <- function() {
 
 read_all_csv_files <- function() {
 
-  nb_of_cores <- parallel::detectCores()
-
-  future::plan(future::multisession, workers = nb_of_cores)
+  future::plan(future::multisession)
   filepaths <- fs::dir_ls(unzip_location())
   filenames <- basename(filepaths)
 
@@ -75,7 +73,8 @@ read_all_csv_files <- function() {
   silent_read_csv <- function(csv_filepath) {
     p(basename(csv_filepath))
     read_csv2 <- purrr::quietly(readr::read_csv2)
-    quiet_output <- read_csv2(csv_filepath)
+    quiet_output <- read_csv2(csv_filepath,
+                              locale = readr::locale(encoding = "WINDOWS-1252"))
     quiet_output$result
   }
   (
