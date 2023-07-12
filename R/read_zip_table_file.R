@@ -83,8 +83,18 @@ read_all_csv_files <- function() {
     read_csv2 <- purrr::quietly(readr::read_csv2)
     quiet_output <- read_csv2(csv_filepath,
                               locale = readr::locale(encoding = "WINDOWS-1252"))
-    dplyr::select(quiet_output$result,
-                  - dplyr::any_of(columns_to_discard))
+
+    df <- quiet_output$result
+
+    if("finess_comp" %in% names(df)) {
+     (
+       df
+       %>% dplyr::select(- dplyr::any_of(columns_to_discard))
+       %>% dplyr::mutate(finess_comp =
+                           stringr::str_sub(finess_comp, start = 2L))
+     ) -> df
+    }
+    df
   }
   (
     filepaths
