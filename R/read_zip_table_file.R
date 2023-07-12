@@ -28,6 +28,14 @@ read_zip_table_file <- function(zip_filepath,
   save_all_tibbles_to_rds(dfs, champ, statut)
 }
 
+columns_to_discard <- c("champ",
+                        "statut",
+                        "date du resultat",
+                        "ipe",
+                        "per_comp",
+                        "date_comp",
+                        "temp_comp")
+
 unzip_location <- function() glue::glue(".{tempdir()}/")
 
 prepare_csv_files <- function(zip_filepath) {
@@ -75,7 +83,8 @@ read_all_csv_files <- function() {
     read_csv2 <- purrr::quietly(readr::read_csv2)
     quiet_output <- read_csv2(csv_filepath,
                               locale = readr::locale(encoding = "WINDOWS-1252"))
-    quiet_output$result
+    dplyr::select(quiet_output$result,
+                  - dplyr::any_of(columns_to_discard))
   }
   (
     filepaths

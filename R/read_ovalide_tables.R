@@ -13,5 +13,6 @@ read_ovalide_tables <- function(champ = "mco", statut = "dgf") {
   rds_filepath <- glue::glue("./data/{champ}_{statut}/ovalide.rds")
 
   the[[tables_varlist]] <- readr::read_rds(rds_filepath)
+  invisible()
 }
 
