@@ -14,9 +14,7 @@
 #' with_progressr(read_zip_table_file("file.zip", "had", "oqn"))
 #'
 #' # can also be called with `progressr::withProgressShiny`
-read_zip_table_file <- function(zip_filepath,
-                                champ = c("mco", "had", "ssr", "psy"),
-                                statut = c("dgf", "oqn")) {
+read_zip_table_file <- function(zip_filepath, nature) {
 
   fs::dir_create(unzip_location())
   withr::defer(fs::dir_delete("./tmp"))
@@ -25,7 +23,7 @@ read_zip_table_file <- function(zip_filepath,
 
   dfs <- read_all_csv_files()
 
-  save_all_tibbles_to_rds(dfs, champ, statut)
+  save_all_tibbles_to_rds(dfs, nature)
 }
 
 columns_to_discard <- c("champ",
@@ -104,8 +102,8 @@ read_all_csv_files <- function() {
   dfs
 }
 
-save_all_tibbles_to_rds <- function(dfs, champ, statut) {
-  data_save_dir <- glue::glue("./data/{champ}_{statut}")
+save_all_tibbles_to_rds <- function(dfs, nature) {
+  data_save_dir <- glue::glue("./data/{nature$champ}_{nature$statut}")
   fs::dir_create(data_save_dir)
 
   data_save_path <- glue::glue("{data_save_dir}/ovalide.rds")

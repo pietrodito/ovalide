@@ -7,10 +7,10 @@
 #' @export
 #'
 #' @examples
-read_ovalide_tables <- function(champ = "mco", statut = "dgf") {
+read_ovalide_tables <- function(nature) {
 
-  tables_varlist <- glue::glue("{champ}_{statut}_ovalide")
-  rds_filepath <- glue::glue("./data/{champ}_{statut}/ovalide.rds")
+  tables_varlist <- ovalide_tables(nature)
+  rds_filepath <- rds_filepath(nature)
 
   the[[tables_varlist]] <- readr::read_rds(rds_filepath)
   invisible()

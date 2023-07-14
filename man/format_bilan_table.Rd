@@ -4,7 +4,7 @@
 \alias{format_bilan_table}
 \title{Format bilan table}
 \usage{
-format_bilan_table(champ = "mco", statut = "dgf", finess)
+format_bilan_table(nature, finess)
 }
 \arguments{
 \item{statut}{}

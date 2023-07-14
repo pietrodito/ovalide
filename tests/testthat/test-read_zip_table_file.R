@@ -1,10 +1,9 @@
 test_that("unzip and save had dgf ", {
  (
    testthat::test_path("test_data/had.dgf.2023.4.ovalide-tables-as-csv.zip")
-   %>% read_zip_table_file(champ = "had", statut = "dgf")
+   %>% read_zip_table_file(nature("had", "dgf"))
  )
 
-  #withr::defer(fs::dir_delete("data"))
 
   rds_result_path <- "data/had_dgf/ovalide.rds"
   expected_file_size <- 1144977L
@@ -16,10 +15,9 @@ test_that("unzip and save had dgf ", {
 test_that("unzip and save psy oqn ", {
  (
    testthat::test_path("test_data/psy.oqn.2023.4.ovalide-tables-as-csv.zip")
-   %>% read_zip_table_file(champ = "psy", statut = "oqn")
+   %>% read_zip_table_file(nature("psy", "oqn"))
  )
 
-  #withr::defer(fs::dir_delete("data"))
 
   rds_result_path <- "data/psy_oqn/ovalide.rds"
   expected_file_size <- 1663424L

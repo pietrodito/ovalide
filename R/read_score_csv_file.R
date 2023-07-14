@@ -8,12 +8,10 @@
 #' @export
 #'
 #' @examples
-#' read_score_file("score.csv", "psy", "dgf")
-read_score_csv_file <- function(csv_filepath,
-                            champ = c("mco", "had", "ssr", "psy"),
-                            statut = c("dgf", "oqn")) {
+#' read_score_file("score.csv", champ("psy", "dgf"))
+read_score_csv_file <- function(csv_filepath, nature ) {
 
-  nettoie_nom_colonnes <- if (champ == "psy") {
+  nettoie_nom_colonnes <- if (nature$champ == "psy") {
     nettoie_nom_colonnes_psy
   } else {
     nettoie_nom_colonnes_sauf_psy
@@ -24,7 +22,7 @@ read_score_csv_file <- function(csv_filepath,
     %>% readr::read_csv2()
     %>% pick_and_order_proper_columns()
     %>% nettoie_nom_colonnes()
-    %>% readr::write_csv(glue::glue("data/{champ}_{statut}/score.csv"))
+    %>% readr::write_csv(score_filepath(nature))
   )
 }
 

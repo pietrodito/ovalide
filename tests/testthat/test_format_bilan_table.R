@@ -1,6 +1,6 @@
-library(ovalide)
+# library(ovalide)
 
-read_ovalide_tables("mco", "dgf")
+read_ovalide_tables(nature("mco", "dgf"))
 ch_guise   <- "020000022"
 roseraie   <- "020000386"
 st_quentin <- "020000063"
@@ -11,7 +11,8 @@ format_bilan_table <- purrr::quietly(format_bilan_table)
 
 
 test_that("MCO bilan works", {
-  quiet_output <- format_bilan_table("mco", "dgf", finess = ch_guise)
+  quiet_output <- format_bilan_table(nature("mco", "dgf"),
+                                     finess = ch_guise)
   bilan <- quiet_output$result
 
   expect_equal(ncol(bilan), 7)
@@ -21,7 +22,8 @@ test_that("MCO bilan works", {
 check_all_bilan_variables_are_treated <- function() {
   (
     the$mco_dgf_scores$Finess
-    %>% purrr::map(~ format_bilan_table("mco", "dgf", .x))
+    %>% purrr::map(~ format_bilan_table(nature("mco", "dgf"),
+                                        .x))
     %>% purrr::map(~ dplyr::filter(.x, is.na(Variable)))
     %>% purrr::keep(~ nrow(.x) > 0)
   ) -> result
@@ -29,10 +31,11 @@ check_all_bilan_variables_are_treated <- function() {
   expect_equal(length(result), 0)
 
 
-  read_ovalide_tables("mco", "oqn")
+  read_ovalide_tables(nature("mco", "oqn"))
   (
     the$mco_oqn_scores$Finess
-    %>% purrr::map(~ format_bilan_table("mco", "oqn", .x))
+    %>% purrr::map(~ format_bilan_table(nature("mco", "oqn"),
+                                        .x))
     %>% purrr::map(~ dplyr::filter(.x, is.na(Variable)))
     %>% purrr::keep(~ nrow(.x) > 0)
   ) -> result
@@ -47,10 +50,11 @@ test_that("MCO bilan variable works", {
 
 
 test_that("HAD bilan works", {
-  read_ovalide_tables("had", "dgf")
+  read_ovalide_tables(nature("had", "dgf"))
 
   quiet_output <-
-    format_bilan_table("had", "dgf", finess = ch_guise)
+    format_bilan_table(nature("had", "dgf"),
+                       finess = ch_guise)
   bilan <- quiet_output$result
 
   expect_equal(ncol(bilan), 5)
@@ -59,10 +63,11 @@ test_that("HAD bilan works", {
 
 
 test_that("SSR bilan works", {
-  read_ovalide_tables("ssr", "dgf")
+  read_ovalide_tables(nature("ssr", "dgf"))
 
   quiet_output <-
-    format_bilan_table("ssr", "dgf", finess = ch_guise)
+    format_bilan_table(nature("ssr", "dgf"),
+                       finess = ch_guise)
   bilan <- quiet_output$result
 
   expect_equal(ncol(bilan), 5)
@@ -70,10 +75,11 @@ test_that("SSR bilan works", {
 })
 
 test_that("PSY bilan works", {
-  read_ovalide_tables("psy", "dgf")
+  read_ovalide_tables(nature("psy", "dgf"))
 
   quiet_output <-
-    format_bilan_table("psy", "dgf", finess = st_quentin)
+    format_bilan_table(nature("psy", "dgf"),
+                       finess = st_quentin)
   bilan <- quiet_output$result
 
   expect_equal(ncol(bilan), 10)

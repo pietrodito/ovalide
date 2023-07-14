@@ -7,14 +7,12 @@
 #' @export
 #'
 #' @examples
-format_bilan_table <-
-  function(champ = "mco",
-           statut = "dgf",
-           finess) {
-    ovalide_tables <- the[[glue::glue("{champ}_{statut}_ovalide")]]
+format_bilan_table <- function(nature, finess) {
+
+    ovalide_tables <- the[[ovalide_tables(nature)]]
 
     if (is.null(ovalide_tables)) {
-      warning(glue::glue("There is no ovalide data for {champ} {statut}"))
+      warning(no_ovalide_data(nature))
       return(invisible())
     }
 
@@ -119,9 +117,9 @@ format_bilan_table <-
                              "pct_1")
 
     proper_nom_colonnes <-
-      get(glue::glue("proper_{champ}_colonnes"))
+      get(glue::glue("proper_{nature$champ}_colonnes"))
     colonnes_pour_select <-
-      get(glue::glue("colonnes_{champ}_select"))
+      get(glue::glue("colonnes_{nature$champ}_select"))
 
     rename_proper <- function(df) {
       names(df) <- proper_nom_colonnes
@@ -129,7 +127,7 @@ format_bilan_table <-
     }
 
     proper_variable <- function(df) {
-      if (champ == "psy") {
+      if (nature$champ == "psy") {
         df
       } else {
         (
@@ -155,7 +153,7 @@ format_bilan_table <-
     }
 
     remove_first_row_if_mco <- function(df) {
-      if (champ == "mco") {
+      if (nature$champ == "mco") {
         dplyr::filter(df, dplyr::row_number() != 1)
       } else {
         df
@@ -211,7 +209,7 @@ format_bilan_table <-
     bilan_ssr_table_name <- "T1D0RTP_2"
     bilan_psy_table_name <- "T1D2SYNTHM_1"
 
-    bilan_table_name <- get(glue::glue("bilan_{champ}_table_name"))
+    bilan_table_name <- get(glue::glue("bilan_{nature$champ}_table_name"))
 
     (
       ovalide_tables[[bilan_table_name]]
