@@ -7,5 +7,5 @@
 #'
 #' @examples
 read_score <- function(nature) {
-   the[[score(nature)]] <- readr::read_csv(score_filepath(nature))
+   set_score(nature, readr::read_csv(score_filepath(nature)))
 }

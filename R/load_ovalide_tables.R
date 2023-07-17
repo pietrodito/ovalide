@@ -9,11 +9,10 @@
 #' @examples
 load_ovalide_tables <- function(nature, force = FALSE) {
 
-  tables_varlist <- ovalide_tables(nature)
-
-  if (is.null(the[[tables_varlist]]) || force) {
+  if (is.null(ovalide_tables(nature)) || force) {
     rds_filepath <- rds_filepath(nature)
-    the[[tables_varlist]] <- readr::read_rds(rds_filepath)
+    set_ovalide_tables(nature, readr::read_rds(rds_filepath))
   }
+
   invisible()
 }

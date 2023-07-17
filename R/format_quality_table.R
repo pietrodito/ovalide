@@ -9,7 +9,7 @@
 #' @examples
 format_quality_table <-  function(nature, finess) {
 
-    ovalide_tables <- the[[ovalide_tables(nature)]]
+    ovalide_tables <- ovalide_tables(nature)
 
     if (is.null(ovalide_tables)) {
       warning(no_ovalide_data(nature))
