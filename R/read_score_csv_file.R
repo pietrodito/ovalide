@@ -1,8 +1,7 @@
 #' Read a csv score file and affect to the_environment
 #'
+#' @param nature
 #' @param csv_filepath the path of the csv file
-#' @param champ name of the PMSI champ
-#' @param statut private or public status
 #'
 #' @return
 #' @export

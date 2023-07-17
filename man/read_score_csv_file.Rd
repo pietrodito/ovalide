@@ -4,22 +4,14 @@
 \alias{read_score_csv_file}
 \title{Read a csv score file and affect to the_environment}
 \usage{
-read_score_csv_file(
-  csv_filepath,
-  champ = c("mco", "had", "ssr", "psy"),
-  statut = c("dgf", "oqn")
-)
+read_score_csv_file(csv_filepath, nature)
 }
 \arguments{
 \item{csv_filepath}{the path of the csv file}
-
-\item{champ}{name of the PMSI champ}
-
-\item{statut}{private or public status}
 }
 \description{
 Read a csv score file and affect to the_environment
 }
 \examples{
-read_score_file("score.csv", "psy", "dgf")
+read_score_file("score.csv", champ("psy", "dgf"))
 }

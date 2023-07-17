@@ -4,10 +4,10 @@
 \alias{read_score}
 \title{Read saved score}
 \usage{
-read_score(champ = "mco", statut = "dgf")
+read_score(nature)
 }
 \arguments{
-\item{statut}{}
+\item{nature}{}
 }
 \description{
 Read saved score

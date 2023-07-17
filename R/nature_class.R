@@ -30,6 +30,8 @@ generics <- c(
   "ovalide_tables",
   "rds_filepath",
   "no_ovalide_data",
+  "report_proper_column_names",
+  "report_columns_to_select",
   "quality_table_name"
 ); purrr::walk(generics, produce_UseMethod)
 
@@ -45,12 +47,12 @@ score.ovalide_nature <- function(nature) {
   glue::glue("{nature$champ}_{nature$statut}_scores")
 }
 
-ovalide_tables.ovalide_nature <- function(nature) {
-  glue::glue("{nature$champ}_{nature$statut}_ovalide")
-}
-
 rds_filepath.ovalide_nature <- function(nature) {
   glue::glue("./data/{nature$champ}_{nature$statut}/ovalide.rds")
+}
+
+ovalide_tables.ovalide_nature <- function(nature) {
+  glue::glue("{nature$champ}_{nature$statut}_ovalide")
 }
 
 no_ovalide_data.ovalide_nature <- function(nature) {
@@ -58,6 +60,14 @@ no_ovalide_data.ovalide_nature <- function(nature) {
     "There is no ovalide data for {nature$champ} {nature$statut}")
 }
 
+report_proper_column_names.ovalide_nature <- function(nature) {
+    get(glue::glue("proper_{nature$champ}_colonnes"))
+}
+
+report_columns_to_select.ovalide_nature <- function(nature) {
+    get(glue::glue("colonnes_{nature$champ}_select"))
+}
+
 quality_table_name.ovalide_nature <- function(nature) {
-  glue::glue("quality_{champ}_table_name")
+  glue::glue("quality_{nature$champ}_table_name")
 }

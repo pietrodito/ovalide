@@ -28,6 +28,8 @@ read_zip_table_file <- function(zip_filepath, nature) {
 
 columns_to_discard <- c("champ",
                         "statut",
+                        "annee",
+                        "periode",
                         "date du resultat",
                         "ipe",
                         "per_comp",

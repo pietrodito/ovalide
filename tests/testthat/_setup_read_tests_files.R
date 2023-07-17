@@ -1,11 +1,12 @@
 #library(ovalide)
 
 test_read_ovalide_zip <- function(champ = "mco", statut = "dgf") {
+  n <- nature(champ, statut)
   zip_filepath <- testthat::test_path(glue::glue(
     "test_data/{champ}.{statut}.2023.4.ovalide-tables-as-csv.zip"
   ))
 
-  progressr::with_progress(read_zip_table_file(zip_filepath, champ, statut))
+  progressr::with_progress(read_zip_table_file(zip_filepath, n))
 }
 
 message("Reading zip mco dgf...")

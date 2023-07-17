@@ -4,11 +4,7 @@
 \alias{read_zip_table_file}
 \title{Read table data from zip ovalide file}
 \usage{
-read_zip_table_file(
-  zip_filepath,
-  champ = c("mco", "had", "ssr", "psy"),
-  statut = c("dgf", "oqn")
-)
+read_zip_table_file(zip_filepath, nature)
 }
 \arguments{
 \item{zip_filepath}{the zip file path}

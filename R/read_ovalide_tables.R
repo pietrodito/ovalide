@@ -1,13 +1,12 @@
-#' Read ovalide table stored data
+#' Load ovalide table stored data in `the` internal state
 #'
-#' @param champ
-#' @param statut
+#' @param nature
 #'
 #' @return list of ovalide table dataframes
 #' @export
 #'
 #' @examples
-read_ovalide_tables <- function(nature) {
+load_ovalide_tables <- function(nature) {
 
   tables_varlist <- ovalide_tables(nature)
   rds_filepath <- rds_filepath(nature)

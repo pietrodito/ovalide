@@ -1,7 +1,6 @@
 #' Read saved score
 #'
-#' @param champ
-#' @param statut
+#' @param nature
 #'
 #' @return
 #' @export

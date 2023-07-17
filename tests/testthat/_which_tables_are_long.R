@@ -1,13 +1,17 @@
 library(ovalide)
 library(purrr)
 
-(champ <- c("mco", "had", "ssr", "psy"))
-(statut <- c("dgf", "oqn"))
-
-walk(champ, function(.c) {
-  walk(statut, function(.s) {
-    read_ovalide_tables(.c, .s)
-  })
-})
+(champs <- c("mco", "had", "ssr", "psy"))
+(statuts <- c("dgf", "oqn"))
 
 
+((
+  champs
+  %>% map(function(.c) { map(statuts, function(.s) nature(.c, .s)) })
+  %>% flatten()
+) -> natures)
+
+(
+  natures
+  %>% walk(load_ovalide_tables)
+)

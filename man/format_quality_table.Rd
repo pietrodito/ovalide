@@ -7,7 +7,7 @@
 format_quality_table(nature, finess)
 }
 \arguments{
-\item{finess}{}
+\item{nature}{}
 }
 \description{
 Title
