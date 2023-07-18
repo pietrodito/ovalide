@@ -1,5 +1,5 @@
 #' @export
-nature <- function(champ, statut) {
+nature <- function(champ = "mco", statut = "dgf") {
   structure(
     list(champ = champ,
          statut = statut),
