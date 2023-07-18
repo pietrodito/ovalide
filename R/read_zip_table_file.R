@@ -105,11 +105,9 @@ read_all_csv_files <- function() {
 }
 
 save_all_tibbles_to_rds <- function(dfs, nature) {
-  data_save_dir <- glue::glue("./data/{nature$champ}_{nature$statut}")
-  fs::dir_create(data_save_dir)
 
-  data_save_path <- glue::glue("{data_save_dir}/ovalide.rds")
-  readr::write_rds(dfs, data_save_path)
+  fs::dir_create(data_save_dir(nature))
+  readr::write_rds(dfs, rds_filepath(nature))
 
   invisible()
 }

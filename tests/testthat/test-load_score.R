@@ -3,20 +3,20 @@ fs::dir_create("data/psy_oqn/")
 # withr::defer(fs::dir_delete("data"))
 
 read_score_csv_file <- purrr::quietly(read_score_csv_file)
-read_score          <- purrr::quietly(read_score)
+load_score          <- purrr::quietly(load_score)
 
-test_that("lit fichier score champ mco", {
+test_that("charge fichier score champ mco", {
   nature <- nature("mco", "dgf")
   read_score_csv_file(testthat::test_path("test_data/mco_dgf.csv"),
                       nature)
-  read_score(nature)
+  load_score(nature)
   expect_equal(ncol(the$mco_dgf_scores), 21)
 })
 
-test_that("lit fichier score champ psy", {
+test_that("charge fichier score champ psy", {
   nature <- nature("psy", "oqn")
   read_score_csv_file(testthat::test_path("test_data/psy_oqn.csv"),
                       nature)
-  read_score(nature)
+  load_score(nature)
   expect_equal(ncol(the$psy_oqn_scores), 27)
 })

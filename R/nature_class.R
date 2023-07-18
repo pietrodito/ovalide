@@ -7,6 +7,8 @@ nature <- function(champ, statut) {
   )
 }
 
+data_save_dir_root <- "ovalide_data"
+
 produce_UseMethod <- function(generic_name) {
   assign(x = generic_name,
          value = function(x) {
@@ -17,9 +19,14 @@ produce_UseMethod <- function(generic_name) {
 
 generics <- c(
   "suffixe",
+  "data_save_dir",
+
   "score_filepath",
+  "no_score_data",
+
   "rds_filepath",
   "no_ovalide_data",
+
   "report_proper_column_names",
   "report_columns_to_select",
   "quality_table_name"
@@ -29,16 +36,21 @@ suffixe.ovalide_nature <- function(nature) {
   stringr::str_c(nature$champ, "_", nature$statut)
 }
 
-score_filepath.ovalide_nature <- function(nature) {
-  glue::glue("data/{nature$champ}_{nature$statut}/score.csv")
+data_save_dir.ovalide_nature <- function(nature) {
+  glue::glue("{data_save_dir_root}/{suffixe(nature)}")
 }
 
-score.ovalide_nature <- function(nature) {
-  glue::glue("{nature$champ}_{nature$statut}_scores")
+score_filepath.ovalide_nature <- function(nature) {
+  glue::glue("{data_save_dir(nature)}/score.csv")
+}
+
+no_score_data.ovalide_nature <- function(nature) {
+  glue::glue(
+    "There is no score tables data for {nature$champ} {nature$statut}")
 }
 
 rds_filepath.ovalide_nature <- function(nature) {
-  glue::glue("./data/{nature$champ}_{nature$statut}/ovalide.rds")
+  glue::glue("{data_save_dir(nature)}/ovalide.rds")
 }
 
 no_ovalide_data.ovalide_nature <- function(nature) {

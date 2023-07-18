@@ -1,4 +1,4 @@
-#' Read saved score
+#' Load saved score
 #'
 #' @param nature
 #'
@@ -6,6 +6,6 @@
 #' @export
 #'
 #' @examples
-read_score <- function(nature) {
+load_score <- function(nature) {
    set_score(nature, readr::read_csv(score_filepath(nature)))
 }
