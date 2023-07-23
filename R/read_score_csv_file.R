@@ -16,6 +16,8 @@ read_score_csv_file <- function(csv_filepath, nature ) {
     nettoie_nom_colonnes_sauf_psy
   }
 
+  fs::dir_create(data_save_dir(nature))
+
   (
     csv_filepath
     %>% readr::read_csv2()
