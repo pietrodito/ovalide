@@ -29,11 +29,26 @@ format_table <- function(table,
     %>% select_columns(selected_columns)
     %>% rename_cols(translated_columns)
     %>% format_percentage_columns()
+    %>% arrange_marked_column()
   )
 }
 
 filter_on_finess <- function(result, finess) {
     dplyr::filter(result, finess_comp == finess)
+}
+
+arrange_marked_column <- function(df) {
+  count_consecutive_stars <- function(character) {
+    (
+      character
+      |> stringr::str_extract("[*]+")
+      |> stringr::str_length()
+    ) -> stars_count
+    names(stars_count) <- character
+    names(sort(stars_count))
+  }
+  column_to_arrange_order <- count_consecutive_stars(names(df))
+  dplyr::arrange(df, !!! rlang::syms(column_to_arrange_order))
 }
 
 rename_1st_col_rows <- function(result,
