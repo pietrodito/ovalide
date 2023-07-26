@@ -9,6 +9,9 @@ nature <- function(champ = "mco", statut = "dgf") {
 
 data_save_dir_root <- "ovalide_data"
 
+#' @export
+data_save_dir <- NULL
+
 produce_UseMethod <- function(generic_name) {
   assign(x = generic_name,
          value = function(x) {
@@ -36,6 +39,7 @@ suffixe.ovalide_nature <- function(nature) {
   stringr::str_c(nature$champ, "_", nature$statut)
 }
 
+#' @export
 data_save_dir.ovalide_nature <- function(nature) {
   glue::glue("{data_save_dir_root}/{suffixe(nature)}")
 }
