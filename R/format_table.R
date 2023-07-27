@@ -48,7 +48,8 @@ arrange_marked_column <- function(df) {
     names(sort(stars_count))
   }
   column_to_arrange_order <- count_consecutive_stars(names(df))
-  dplyr::arrange(df, dplyr::across(all_of(column_to_arrange_order), desc))
+  dplyr::arrange(df, dplyr::across(dplyr::all_of(column_to_arrange_order),
+                                   dplyr::desc))
 }
 
 rename_1st_col_rows <- function(result,

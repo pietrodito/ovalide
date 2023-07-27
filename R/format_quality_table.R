@@ -22,6 +22,6 @@ format_quality_table <-  function(nature, finess) {
     (
       ovalide_tables[[quality_table_name]]
       %>% dplyr::filter(finess_comp == finess)
-      %>% dplyr::arrange(desc(nb))
+      %>% dplyr::arrange(dplyr::desc(nb))
     )
 }
