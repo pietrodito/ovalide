@@ -1,12 +1,5 @@
 #' Format report table
-#'
-#' @param nature
-#' @param finess
-#'
-#' @return
 #' @export
-#'
-#' @examples
 format_report_table <- function(nature, finess) {
   ovalide_tables <- ovalide_tables(nature)
 

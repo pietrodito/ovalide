@@ -1,12 +1,4 @@
-#' Title
-#'
-#' @param finess
-#' @param nature
-#'
-#' @return
 #' @export
-#'
-#' @examples
 format_quality_table <-  function(nature, finess) {
 
     ovalide_tables <- ovalide_tables(nature)

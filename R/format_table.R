@@ -1,18 +1,5 @@
 #' Format table
-#'
-#' @param table
-#' @param finess
-#' @param selected_columns
-#' @param translated_columns
-#' @param filters
-#' @param row_names
-#' @param rows_translated
-#' @param proper_left_col
-#'
-#' @return
 #' @export
-#'
-#' @examples
 format_table <- function(table,
                          finess,
                          selected_columns,
@@ -24,7 +11,8 @@ format_table <- function(table,
   (
     table
     %>% filter_on_finess(finess)
-    %>% rename_1st_col_rows(proper_left_col, selected_columns, rows_translated)
+    %>% rename_1st_col_rows(proper_left_col, selected_columns,
+                            row_names, rows_translated)
     %>% apply_all_filters(filters)
     %>% select_columns(selected_columns)
     %>% rename_cols(translated_columns)
@@ -55,10 +43,20 @@ arrange_marked_column <- function(df) {
 rename_1st_col_rows <- function(result,
                                 proper_left_col,
                                 selected_columns,
+                                row_names,
                                 rows_translated) {
-  if (proper_left_col && length(rows_translated) == nrow(result)) {
+  if (proper_left_col && length(rows_translated) > 0) {
     first_col_name <- selected_columns[1]
-    result[[first_col_name]] <- rows_translated
+    mapping <- tibble(row_names, rows_translated)
+    
+    join_by <- "row_names"
+    names(join_by) <- first_col_name
+    (
+      result
+      |> left_join(mapping, by = join_by)
+      |> mutate( {{ first_col_name }} := rows_translated)
+      |> select(- rows_translated)
+    ) -> result
   }
   result
 }

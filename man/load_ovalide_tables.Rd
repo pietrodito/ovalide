@@ -6,9 +6,6 @@
 \usage{
 load_ovalide_tables(nature, force = FALSE)
 }
-\arguments{
-\item{force}{}
-}
 \value{
 list of ovalide table dataframes
 }

@@ -15,9 +15,6 @@ format_table(
   proper_left_col
 )
 }
-\arguments{
-\item{proper_left_col}{}
-}
 \description{
 Format table
 }

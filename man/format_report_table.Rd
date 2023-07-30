@@ -6,9 +6,6 @@
 \usage{
 format_report_table(nature, finess)
 }
-\arguments{
-\item{finess}{}
-}
 \description{
 Format report table
 }

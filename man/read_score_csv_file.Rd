@@ -8,6 +8,8 @@ read_score_csv_file(csv_filepath, nature)
 }
 \arguments{
 \item{csv_filepath}{the path of the csv file}
+
+\item{nature}{nature}
 }
 \description{
 Read a csv score file and affect to the_environment

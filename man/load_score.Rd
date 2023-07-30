@@ -6,9 +6,6 @@
 \usage{
 load_score(nature)
 }
-\arguments{
-\item{nature}{}
-}
 \description{
 Load saved score
 }

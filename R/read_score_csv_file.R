@@ -1,9 +1,8 @@
 #' Read a csv score file and affect to the_environment
 #'
-#' @param nature
+#' @param nature nature
 #' @param csv_filepath the path of the csv file
 #'
-#' @return
 #' @export
 #'
 #' @examples
